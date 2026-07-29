@@ -3,6 +3,7 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <QSettings>
 
 int main(int argc, char *argv[])
 {
@@ -16,6 +17,21 @@ int main(int argc, char *argv[])
             a.installTranslator(&translator);
             break;
         }
+    }
+    QCoreApplication::setOrganizationName("Vieie");
+    QCoreApplication::setApplicationName("One at a time please");
+    QSettings settings;
+    // set default language
+    if(!settings.contains("language")){
+        QStringList locales = QLocale::system().uiLanguages();
+        for(const QString &locale : locales){
+            const QString baseName = QLocale(locale).name();
+            settings.setValue("language", baseName);
+        }
+    }
+    // set default theme
+    if(!settings.contains("theme")){
+        settings.setValue("theme", "Light");
     }
     MainWindow w;
     w.show();

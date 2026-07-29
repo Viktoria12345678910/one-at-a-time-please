@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ChangeImgDialog</class>
+ <widget class="QDialog" name="ChangeImgDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Змінити зображення персонажа</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="PreviewLb">
+     <property name="text">
+      <string>Зображення</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="chooseBtn">
+     <property name="text">
+      <string>вибрати зображення</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="saveBtn">
+     <property name="text">
+      <string>Зберегти</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

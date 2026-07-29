@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/i18n">
+        <file>build/Desktop-Debug/.qm/one_at_a_time_please_ua.qm</file>
+        <file>build/Desktop-Debug/.qm/one_at_a_time_please_pl.qm</file>
+        <file>build/Desktop-Debug/.qm/one_at_a_time_please_eng.qm</file>
+    </qresource>
+</RCC>
