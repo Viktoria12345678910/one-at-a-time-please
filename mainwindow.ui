@@ -61,7 +61,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>30</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -93,7 +93,6 @@
       <string>Налаштування</string>
      </property>
      <addaction name="changeLangA"/>
-     <addaction name="changeThemeA"/>
     </widget>
     <addaction name="menu_2"/>
     <addaction name="ViewTTA"/>
@@ -142,11 +141,6 @@
   <action name="changeLangA">
    <property name="text">
     <string>Змінити мову</string>
-   </property>
-  </action>
-  <action name="changeThemeA">
-   <property name="text">
-    <string>Змінити тему</string>
    </property>
   </action>
  </widget>

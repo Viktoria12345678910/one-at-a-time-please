@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Get the absolute path of the AppDir root
+HERE="$(dirname "$(readlink -f "${0}")")"
+
+# Set Qt plugin paths
+export QT_PLUGIN_PATH="$HERE/usr/lib/qt-6/plugins"
+export QML2_IMPORT_PATH="$HERE/usr/lib/qt-6/qml"
+
+# Define your Nix store paths dynamically
+QT_BASE="/nix/store/h7wxgv3wpq6vm4367px3jdg7k4dhf1hz-qtbase-6.12.0"
+LIBGLVND_PATH=$(nix-store -qR "$QT_BASE" | grep -E 'libglvnd' | head -n 1)
+
+# Bulletproof way to find the directory containing libstdc++.so.6 via the compiler
+GCC_LIB_PATH=$(dirname "$(g++ -print-file-name=libstdc++.so.6 2>/dev/null)")
+
+# Export runtime library paths so the binary can find Qt, OpenGL, and C++ standard libraries
+export LD_LIBRARY_PATH="$HERE/usr/lib:$QT_BASE/lib:${LIBGLVND_PATH:+${LIBGLVND_PATH}/lib:}${GCC_LIB_PATH:+${GCC_LIB_PATH}:}$LD_LIBRARY_PATH"
+
+# Launch the application
+exec "$HERE/usr/bin/one_at_a_time_please" "$@"

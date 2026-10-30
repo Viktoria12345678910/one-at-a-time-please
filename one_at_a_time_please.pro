@@ -9,7 +9,6 @@ CONFIG += c++17
 SOURCES += \
     changeimgdialog.cpp \
     changelanguagedialog.cpp \
-    changethemedialog.cpp \
     database.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -17,13 +16,11 @@ SOURCES += \
     newthreaddialog.cpp \
     pomodorodialog.cpp \
     pomodorosettingsdialog.cpp \
-    theme.cpp \
     viewttdialog.cpp
 
 HEADERS += \
     changeimgdialog.h \
     changelanguagedialog.h \
-    changethemedialog.h \
     database.h \
     imports.h \
     mainwindow.h \
@@ -33,13 +30,11 @@ HEADERS += \
     newthreaddialog.h \
     pomodorodialog.h \
     pomodorosettingsdialog.h \
-    theme.h \
     viewttdialog.h
 
 FORMS += \
     changeimgdialog.ui \
     changelanguagedialog.ui \
-    changethemedialog.ui \
     mainwindow.ui \
     newtaskdialog.ui \
     newthreaddialog.ui \
@@ -47,11 +42,25 @@ FORMS += \
     pomodorosettingsdialog.ui \
     viewttdialog.ui
 
-TRANSLATIONS += Languages/one_at_a_time_please_eng.ts \
-                Languages/one_at_a_time_please_ua.ts \
-                Languages/one_at_a_time_please_pl.ts
-CONFIG += lrelease embed_translations
-LRELEASE_DIR = .qm
+TRANSLATIONS += Languages/one_at_a_time_please_en_US.ts \
+                Languages/one_at_a_time_please_uk_UA.ts \
+                Languages/one_at_a_time_please_pl_PL.ts
+QM_DIR = $$OUT_PWD/.qm
+system(mkdir -p $$QM_DIR)
+unix:!macx: LRELEASE_BIN = lrelease
+else: LRELEASE_BIN = lrelease
+
+qm_eng.target = $$QM_DIR/one_at_a_time_please_eng.qm
+qm_eng.input = Languages/one_at_a_time_please_eng.ts
+qm_eng.commands = $$LRELEASE_BIN ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
+
+qm_ua.target = $$QM_DIR/one_at_a_time_please_ua.qm
+qm_ua.input = Languages/one_at_a_time_please_ua.ts
+qm_ua.commands = $$LRELEASE_BIN ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
+
+qm_pl.target = $$QM_DIR/one_at_a_time_please_pl.qm
+qm_pl.input = Languages/one_at_a_time_please_pl.ts
+qm_pl.commands = $$LRELEASE_BIN ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

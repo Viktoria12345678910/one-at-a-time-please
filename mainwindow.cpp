@@ -22,14 +22,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->NewThreadA, &QAction::triggered, this, &MainWindow::newThread);
     connect(ui->changeCharachterA, &QAction::triggered, this, &MainWindow::changeImg);
     connect(ui->changeLangA, &QAction::triggered, this, &MainWindow::changeLang);
-    connect(ui->changeThemeA, &QAction::triggered, this, &MainWindow::changeTheme);
+    //connect(ui->changeThemeA, &QAction::triggered, this, &MainWindow::changeTheme);
     connect(ui->ViewTTA, &QAction::triggered, this, &MainWindow::viewTT);
 
     charImg();
     loadThreads();
     loadTasks();
     applyLanguage();
-    applyTheme();
+    //applyTheme();
 }
 
 MainWindow::~MainWindow()
@@ -102,15 +102,15 @@ void MainWindow::changeLang()
     }
 }
 
-void MainWindow::changeTheme()
-{
-    qDebug()<<"----------MainWindow----------";
-    qDebug()<<"changeTheme()";
-    ChangeThemeDialog *changeTheme = new ChangeThemeDialog(this);
-    applyTheme();
-    changeTheme->exec();
-    applyTheme();
-}
+// void MainWindow::changeTheme()
+// {
+//     qDebug()<<"----------MainWindow----------";
+//     qDebug()<<"changeTheme()";
+//     ChangeThemeDialog *changeTheme = new ChangeThemeDialog(this);
+//     applyTheme();
+//     changeTheme->exec();
+//     applyTheme();
+// }
 
 void MainWindow::viewTT()
 {
@@ -241,38 +241,38 @@ void MainWindow::loadLang()
 }
 
 
-bool MainWindow::applyTheme()
-{
-    qDebug()<<"----------MainWindow----------";
-    qDebug()<<"applyTheme()";
+// bool MainWindow::applyTheme()
+// {
+//     qDebug()<<"----------MainWindow----------";
+//     qDebug()<<"applyTheme()";
 
-    auto *dialog = new QProgressDialog(tr("Processing, please wait..."), QString(), 0, 0, this);
-        dialog->setWindowModality(Qt::WindowModal);
-        dialog->setCancelButton(nullptr); // Remove cancel button if task can't be stopped
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->show();
+//     auto *dialog = new QProgressDialog(tr("Processing, please wait..."), QString(), 0, 0, this);
+//         dialog->setWindowModality(Qt::WindowModal);
+//         dialog->setCancelButton(nullptr); // Remove cancel button if task can't be stopped
+//         dialog->setAttribute(Qt::WA_DeleteOnClose);
+//         dialog->show();
 
-    QSettings settings;
-    Theme theme;
-    QString themeFileName = settings.value("theme").toString() + ".qss";
-    QString filePath = QDir(theme.getThemesPath()).filePath(themeFileName);
-        QFile file(filePath);
+//     QSettings settings;
+//     Theme theme;
+//     QString themeFileName = settings.value("theme").toString() + ".qss";
+//     QString filePath = QDir(theme.getThemesPath()).filePath(themeFileName);
+//         QFile file(filePath);
 
-        if (!file.open(QFile::ReadOnly | QFile::Text)) {
-            qDebug() << "Failed to open theme file:" << filePath;
-            return false;
-        }
+//         if (!file.open(QFile::ReadOnly | QFile::Text)) {
+//             qDebug() << "Failed to open theme file:" << filePath;
+//             return false;
+//         }
 
-        QTextStream stream(&file);
-        QString stylesheet = stream.readAll();
-        file.close();
+//         QTextStream stream(&file);
+//         QString stylesheet = stream.readAll();
+//         file.close();
 
-        // Apply globally to the whole application
-        qApp->setStyleSheet(stylesheet);
+//         // Apply globally to the whole application
+//         qApp->setStyleSheet(stylesheet);
 
-        qDebug() << "Applied theme:" << themeFileName;
-        return true;
-}
+//         qDebug() << "Applied theme:" << themeFileName;
+//         return true;
+// }
 
 
 void MainWindow::on_threadBox_currentIndexChanged(int index)

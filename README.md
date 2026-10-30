@@ -32,10 +32,17 @@ Currently this program offers 3 languages. English, polish and ukranian. the lan
 
 ### ୨Build Instructions (Linux)୧
 ```
-git clone https://github.com/yourusername/your-repo.x
-cd your-repo
-mkdir build && cd build
-cmake ..
-make -j$(nproc)
-sudo make install
+# to try it out
+nix run github.com:Viktoria12345678910/one-at-a-time-please.git
+
+# to fully install it
+nix profile install github.com:Viktoria12345678910/one-at-a-time-please.git
 ```
+
+# V1.0.1 Notes
+Hi there. I changed some stuff
+1. I deleted themes.
+Don`t worry they will come back in future versions but for now enjoy whateber your system has for you
+2. I repackaged it with nix.
+Now if you use [nix](https://nixos.org/) you can siply follow the instructions and use this application. More universal packaging will come in later versions
+That`s it for now

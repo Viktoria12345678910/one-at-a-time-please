@@ -3,7 +3,7 @@
 
 #include <QDialog>
 #include "imports.h"
-#include "theme.h"
+
 
 namespace Ui {
 class ChangeThemeDialog;
